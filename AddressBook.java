@@ -122,7 +122,8 @@ public class AddressBook {
 				System.out.println("1. Add contact");
 				System.out.println("2. Show All");
 				System.out.println("3. update contact");
-				System.out.println("4. Exit");
+				System.out.println("4. Delete contact");
+				System.out.println("5. Exit");
 				System.out.println("Please enter choice number: ");
 				System.out.print("==> ");
 				choice = sc.nextInt();
@@ -200,7 +201,20 @@ public class AddressBook {
 					}
 					break;
 					
-				case 4:
+				case 4: 
+					System.out.println("Delete the contact details");
+					System.out.println(" ");
+					System.out.println("Enter phone number for deletion : ");
+					ph_num= sc.nextLong();
+					for(i=0;i<=j;i++)
+					{
+						if (ct[i] != null && ct[i].getPh_num() == ph_num) {
+							ct[i] = null;
+							System.out.println("Contact deleted successfully...");
+						}
+					}
+					
+				case 5:
 					System.exit(0);
 					
 				default: System.out.println("Enter vallid number");
