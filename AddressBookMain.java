@@ -60,13 +60,33 @@ public class AddressBookMain {
             }
         }
     }
+
+    public void citySearch(String cityname){
+        for (Map.Entry<String, AddressBook> entry : bookmap.entrySet()){
+            AddressBook value = entry.getValue();
+            System.out.println("Get Addressbook value: "+entry.getKey());
+            value.searchByState(cityname);
+        }
+    }
+
+    public void stateSearch(String statename){
+        for (Map.Entry<String, AddressBook> entry : bookmap.entrySet()){
+            AddressBook value = entry.getValue();
+            System.out.println("Get Address book value: "+entry.getKey());
+            value.searchByState(statename);
+        }
+    }
+
+
     public static void main(String[] args) {
         System.out.println("Welcome to DEBDUT address book system: ");
         AddressBookMain addressBookMain = new AddressBookMain();
         boolean flag = true;
         while (flag){
             System.out.println("1. Add new Address Book");
-            System.out.println("2. Exit");
+            System.out.println("2. Search contact by city");
+            System.out.println("3. Search contact by state");
+            System.out.println("4. Exit");
             System.out.print("==> ");
             int choice = sc.nextInt();
             switch (choice){
@@ -83,6 +103,18 @@ public class AddressBookMain {
                     }
 
                 case 2:
+                    System.out.println("Enter the name of city: ");
+                    String cityname = sc.next();
+                    addressBookMain.citySearch(cityname);
+                    break;
+
+                case 3:
+                    System.out.println("Enter the name of state: ");
+                    String statename = sc.next();
+                    addressBookMain.stateSearch(statename);
+                    break;
+
+                case 4:
                     flag = false;
                     break;
             }

@@ -1,3 +1,5 @@
+package com.addressbook;
+
 class Contact {
     public String fstname;
     public String lstname;
@@ -11,8 +13,14 @@ class Contact {
 
     @Override
     public String toString() {
-        return "Contact [fstname =" + fstname + ", lstname =" + lstname + ", address =" + address + ", city =" + city
-                + ", state =" + state + ", zip =" + zip + ", ph_num =" + ph_num + ", eml = " + eml + "]";
+        return "Contact [fstname = " + fstname
+                        + ",\n lstname = " + lstname
+                        + ",\n address = " + address
+                        + ",\n city = " + city
+                        + ",\n state = " + state
+                        + ",\n zip = " + zip
+                        + ",\n ph_num = " + ph_num
+                        + ",\n eml = " + eml + "]";
     }
 
 
