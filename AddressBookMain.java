@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -77,6 +78,30 @@ public class AddressBookMain {
         }
     }
 
+    public void getViewPersonByCity(String cityname){
+        for (Map.Entry<String, AddressBook> map : bookmap.entrySet()){
+            AddressBook value = map.getValue();
+            ArrayList<Contact> contacts = value.personCity.entrySet().stream().filter(city -> city.getKey()
+                                                            .equals(cityname)).map(Map.Entry::getValue)
+                                                            .findFirst().orElse(null);
+            for (Contact contact : contacts){
+                System.out.println("Name: "+contact.fstname+" "+contact.lstname);
+            }
+        }
+    }
+
+    public void getViewPersonByState(String statename){
+        for (Map.Entry<String, AddressBook> map : bookmap.entrySet()){
+            AddressBook value = map.getValue();
+            ArrayList<Contact> contacts = value.personState.entrySet().stream().filter(state -> state.getKey()
+                                                            .equals(statename)).map(Map.Entry::getValue)
+                                                            .findFirst().orElse(null);
+            for (Contact contact : contacts){
+                System.out.println("Name: "+contact.fstname+" "+contact.lstname);
+            }
+        }
+    }
+
 
     public static void main(String[] args) {
         System.out.println("Welcome to DEBDUT address book system: ");
@@ -86,7 +111,9 @@ public class AddressBookMain {
             System.out.println("1. Add new Address Book");
             System.out.println("2. Search contact by city");
             System.out.println("3. Search contact by state");
-            System.out.println("4. Exit");
+            System.out.println("4. View person by city");
+            System.out.println("5. View person by state");
+            System.out.println("6. Exit");
             System.out.print("==> ");
             int choice = sc.nextInt();
             switch (choice){
@@ -115,6 +142,18 @@ public class AddressBookMain {
                     break;
 
                 case 4:
+                    System.out.println("Enter the name of city");
+                    String cityName = sc.next();
+                    addressBookMain.getViewPersonByCity(cityName);
+                    break;
+
+                case 5:
+                    System.out.println("Enter the name of city");
+                    String stateName = sc.next();
+                    addressBookMain.getViewPersonByState(stateName);
+                    break;
+
+                case 6:
                     flag = false;
                     break;
             }
