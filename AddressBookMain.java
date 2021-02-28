@@ -102,6 +102,30 @@ public class AddressBookMain {
         }
     }
 
+    void countByCity(String city){
+        int count = 0;
+        for (Map.Entry<String, AddressBook> entry : bookmap.entrySet()){
+            for (int i = 0; i < (entry.getValue()).contactList.size(); i++){
+                Contact contact = entry.getValue().contactList.get(i);
+                if (city.equals(contact.city))
+                    count++;
+            }
+        }
+        System.out.println("Total No of person in this "+city+"city: "+count);
+    }
+
+    void countByState(String state){
+        int count = 0;
+        for (Map.Entry<String, AddressBook> entry : bookmap.entrySet()){
+            for (int i = 0; i < (entry.getValue()).contactList.size(); i++){
+                Contact contact = entry.getValue().contactList.get(i);
+                if (state.equals(contact.state))
+                    count++;
+            }
+        }
+        System.out.println("Total no of person in the "+state+" state: "+count);
+    }
+
 
     public static void main(String[] args) {
         System.out.println("Welcome to DEBDUT address book system: ");
@@ -113,7 +137,9 @@ public class AddressBookMain {
             System.out.println("3. Search contact by state");
             System.out.println("4. View person by city");
             System.out.println("5. View person by state");
-            System.out.println("6. Exit");
+            System.out.println("6. Count person by city");
+            System.out.println("7. Count person by state");
+            System.out.println("8. Exit");
             System.out.print("==> ");
             int choice = sc.nextInt();
             switch (choice){
@@ -154,6 +180,18 @@ public class AddressBookMain {
                     break;
 
                 case 6:
+                    System.out.println("Enter the name of city: ");
+                    String city = sc.next();
+                    addressBookMain.countByCity(city);
+                    break;
+
+                case 7:
+                    System.out.println("Enter the nameof state: ");
+                    String state = sc.next();
+                    addressBookMain.countByState(state);
+                    break;
+
+                case 8:
                     flag = false;
                     break;
             }
