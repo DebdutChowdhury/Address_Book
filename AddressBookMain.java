@@ -1,7 +1,5 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class AddressBookMain {
     static Scanner sc = new Scanner(System.in);
@@ -126,6 +124,16 @@ public class AddressBookMain {
         System.out.println("Total no of person in the "+state+" state: "+count);
     }
 
+    void sortcontact(){
+        for (Map.Entry<String, AddressBook> entry : bookmap.entrySet()){
+            AddressBook value = entry.getValue();
+            List<Contact> list = value.contactList.stream().sorted(Comparator.comparing(e -> e.fstname)).collect(Collectors.toList());
+            for (Contact contact : list){
+                System.out.println("Name: "+contact.fstname+" "+contact.lstname);
+            }
+        }
+    }
+
 
     public static void main(String[] args) {
         System.out.println("Welcome to DEBDUT address book system: ");
@@ -139,7 +147,8 @@ public class AddressBookMain {
             System.out.println("5. View person by state");
             System.out.println("6. Count person by city");
             System.out.println("7. Count person by state");
-            System.out.println("8. Exit");
+            System.out.println("8. Sort contact by name");
+            System.out.println("9. Exit");
             System.out.print("==> ");
             int choice = sc.nextInt();
             switch (choice){
@@ -192,6 +201,11 @@ public class AddressBookMain {
                     break;
 
                 case 8:
+                    System.out.println("Sorting your contact");
+                    addressBookMain.sortcontact();
+                    break;
+
+                case 9:
                     flag = false;
                     break;
             }
